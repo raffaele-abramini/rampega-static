@@ -1,0 +1,41 @@
+{
+  "name": "rampega-static",
+  "description": "Rampega",
+  "private": true,
+  "version": "0.0.1",
+  "author": "raffaele.abramini",
+  "bugs": {
+    "url": "https://github.com/contentful/starter-gatsby-blog/issues"
+  },
+  "dependencies": {
+    "gatsby": "^2.19.1",
+    "gatsby-image": "^2.0.13",
+    "gatsby-plugin-react-helmet": "^3.0.0",
+    "gatsby-source-contentful": "^2.1.78",
+    "gatsby-transformer-remark": "^2.1.6",
+    "gh-pages": "^2.0.1",
+    "lodash": "^4.17.11",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-helmet": "^5.2.0"
+  },
+  "homepage": "https://github.com/contentful/starter-gatsby-blog#readme",
+  "keywords": [
+    "gatsby",
+    "contentful",
+    "starter"
+  ],
+  "license": "MIT",
+  "main": "n/a",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/contentful/starter-gatsby-blog.git"
+  },
+  "scripts": {
+    "dev": "gatsby develop",
+    "build": "gatsby build",
+    "heroku-postbuild": "gatsby build",
+    "serve": "gatsby serve",
+    "setup": "npm install --no-save contentful-import yargs-parser axios chalk && node ./setup.js"
+  }
+}
