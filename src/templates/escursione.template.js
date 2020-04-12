@@ -1,58 +1,97 @@
-import React from 'react'
-import { graphql } from 'gatsby'
-import Helmet from 'react-helmet'
-import get from 'lodash/get'
-import Img from 'gatsby-image'
-import Layout from '../components/layout'
-
-import heroStyles from '../components/hero.module.css'
+import React from "react";
+import { graphql } from "gatsby";
+import Helmet from "react-helmet";
+import get from "lodash/get";
+import Img from "gatsby-image";
+import Layout from "../components/layout";
+import Hero from "../components/hero";
+import styles from "./escursione.template.module.css";
+import FsLightbox from "fslightbox-react";
 
 class EscursioneTemplate extends React.Component {
-  render() {
-    const escursione = get(this.props, 'data.contentfulEscursione')
-    const siteTitle = get(this.props, 'data.site.siteMetadata.title')
+  state = {
+    toggler: false,
+    slide: 1,
+  };
 
+  render() {
+    const escursione = get(this.props, "data.contentfulEscursione");
+    const siteTitle = get(this.props, "data.site.siteMetadata.title");
+    const { toggler, slide } = this.state;
+
+    console.log(escursione);
     return (
       <Layout location={this.props.location}>
-        <div style={{ background: '#fff' }}>
-          <Helmet title={`${escursione.titolo} | ${siteTitle}`} />
-          <div className={heroStyles.hero}>
-            <Img
-              className={heroStyles.heroImage}
-              alt={escursione.title}
-              fluid={escursione.immagineDiCopertina.fluid}
-            />
+        <Helmet title={`${escursione.titolo} | ${siteTitle}`} />
+        <Hero escursione={escursione} />
+        <div className={styles.main}>
+          <div className={styles.textColumn}>
+            <div className={styles.textColumnInner}>
+              <p
+                style={{
+                  display: "block",
+                }}
+              >
+                {escursione.data}
+              </p>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: escursione.resoconto.childMarkdownRemark.html,
+                }}
+              />
+            </div>
           </div>
-          <div className="wrapper">
-            <h1 className="section-headline">{escursione.titolo}</h1>
-            <p
-              style={{
-                display: 'block',
-              }}
-            >
-              {escursione.data}
-            </p>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: escursione.resoconto.childMarkdownRemark.html,
-              }}
-            />
+          <div className={styles.galleryColumn}>
+            <ul className={styles.gallery}>
+              {escursione.gallery.map((g, i) => (
+                <li
+                  key={i}
+                  className={styles.galleryElement}
+                  onClick={() =>
+                    this.setState({
+                      toggler: true,
+                      slide: i + 1,
+                    })
+                  }
+                >
+                  <Img alt={g.title} fluid={g.fluid} />
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
+
+        <FsLightbox
+          toggler={toggler}
+          sources={escursione.gallery.map((g) => g.fixed.src)}
+          slide={slide}
+          onClose={() => {
+            setTimeout(() => this.setState({ toggler: false }), 500);
+          }}
+        />
       </Layout>
-    )
+    );
   }
 }
 
-export default EscursioneTemplate
+export default EscursioneTemplate;
 
-export const pageQuery = graphql`query EscursioneByUrl($url: String!) {
-  contentfulEscursione(url: { eq: $url }) {
+export const pageQuery = graphql`
+  query EscursioneByUrl($url: String!) {
+    contentfulEscursione(url: { eq: $url }) {
       titolo
       data(formatString: "MMMM Do, YYYY")
       immagineDiCopertina {
-        fluid(maxWidth: 1180, background: "rgb:000000") {
+        fluid(maxWidth: 1180, background: "rgb:999999") {
           ...GatsbyContentfulFluid_tracedSVG
+        }
+      }
+      gallery {
+        fluid(maxWidth: 1180, background: "rgb:999999") {
+          ...GatsbyContentfulFluid_tracedSVG
+        }
+        fixed {
+          src
         }
       }
       resoconto {
@@ -62,4 +101,4 @@ export const pageQuery = graphql`query EscursioneByUrl($url: String!) {
       }
     }
   }
-`
+`;

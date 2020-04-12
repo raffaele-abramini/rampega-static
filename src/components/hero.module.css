@@ -1,8 +1,6 @@
 .hero {
   position: relative;
-  background: #000;
   color: #fff;
-  text-align: center;
 }
 
 .heroImage {
@@ -11,17 +9,20 @@
     the viewport width
   */
   height: 61.8vh;
-  max-height: 400px;
+  max-height: 50vh;
 }
 
 .heroDetails {
   position: absolute;
-  background: rgba(0, 0, 0, 0.7);
-  left: 50%;
+  background: linear-gradient(0deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 100%);
+  top: 30%;
   bottom: 0;
-  transform: translate(-50%, 0);
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
   font-size: 14px;
-  padding: 0 0.5em;
+  padding: 40px;
 }
 
 @media(min-width: 600px) {
@@ -41,7 +42,7 @@
 }
 
 .heroTitle {
-  margin: 0;
-  font-size: 1.125em;
-  font-weight: bold;
+  margin: auto 0 0;
+  line-height: 1;
+  font-size: 48px;
 }

@@ -1,0 +1,33 @@
+.main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 40px;
+  padding-top: 7.5vh;
+}
+
+.textColumn {
+  display: flex;
+}
+.textColumnInner {
+  flex: 0 1 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.galleryColumn {
+}
+
+.gallery {
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-gap: 20px ;
+  margin: 0;
+  padding: 0;
+}
+
+.galleryElement {
+  position: relative;
+  list-style: none;
+}

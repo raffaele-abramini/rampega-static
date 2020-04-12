@@ -1,20 +1,20 @@
-import React from 'react'
-import { Link } from 'gatsby'
-import Img from 'gatsby-image'
+import React from "react";
+import { Link } from "gatsby";
+import Img from "gatsby-image";
 
-import styles from './article-preview.module.css'
+import styles from "./escursione-preview.module.css";
 
 export default ({ escursione }) => (
-  <div className={styles.preview}>
-    <Img alt="" fluid={escursione.immagineDiCopertina.fluid} />
-    <h3 className={styles.previewTitle}>
-      <Link to={`/escursioni/${escursione.url}`}>{escursione.titolo}</Link>
-    </h3>
-    <small>{escursione.data}</small>
-    <p
-      dangerouslySetInnerHTML={{
-        __html: escursione.resoconto.childMarkdownRemark.html,
-      }}
-    />
-  </div>
-)
+  <article>
+    <Link to={`/escursioni/${escursione.url}`} className={styles.main}>
+      <Img
+        className={styles.img}
+        alt=""
+        fluid={escursione.immagineDiCopertina.fluid}
+      />
+      <div className={styles.text}>
+        <h3 className={styles.title}>{escursione.titolo}</h3>
+      </div>
+    </Link>
+  </article>
+);
