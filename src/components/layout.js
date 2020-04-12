@@ -1,7 +1,8 @@
 import React from 'react'
 import './base.css'
 import Container from './container'
-import Navigation from './navigation'
+import Sidebar from './sidebar'
+import styles from "./layout.module.css";
 
 class Template extends React.Component {
   render() {
@@ -9,8 +10,8 @@ class Template extends React.Component {
 
     return (
       <Container>
-        <Navigation />
-        {children}
+        <Sidebar classNames={styles.sidebar} />
+        <div className={styles.mainColumn}>{children}</div>
       </Container>
     )
   }

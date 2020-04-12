@@ -1,0 +1,27 @@
+.main {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.topContent {
+    margin-bottom: 20px;
+}
+
+.bottomContent {
+    margin-top: auto;
+}
+
+.rampega {
+    margin: 0;
+    line-height: 1;
+}
+
+.est {
+    margin: 0;
+}
+
+.contentText {
+}
+
+.bottomText {}
