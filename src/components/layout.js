@@ -6,14 +6,11 @@ import styles from "./layout.module.css";
 
 class Template extends React.Component {
   render() {
-    const { children, location } = this.props;
+    const { children, sidebarContent = "" } = this.props;
 
     return (
       <Container>
-        <Sidebar
-          classNames={styles.sidebar}
-          isIndex={location.pathname === "/"}
-        />
+        <Sidebar classNames={styles.sidebar} content={sidebarContent} />
         <div className={styles.mainColumn}>{children}</div>
       </Container>
     );

@@ -16,7 +16,8 @@ class EscursioneTemplate extends React.Component {
 
   render() {
     const escursione = get(this.props, "data.contentfulEscursione");
-    const siteTitle = get(this.props, "data.site.siteMetadata.title");
+    const siteTitle = get(this, "props.data.contentfulSettings.nomeSito");
+
     const { toggler, slide } = this.state;
 
     return (
@@ -94,6 +95,10 @@ export const pageQuery = graphql`
           html
         }
       }
+    }
+
+    contentfulSettings(settings: { eq: "settings" }) {
+      nomeSito
     }
   }
 `;

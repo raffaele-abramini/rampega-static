@@ -8,38 +8,24 @@ import EscursionePreview from "../components/escursione-preview";
 
 class RootIndex extends React.Component {
   render() {
-    const siteTitle = get(this, "props.data.site.siteMetadata.title");
+    const siteTitle = get(this, "props.data.contentfulSettings.nomeSito");
+    const sidebarContent = get(
+      this,
+      "props.data.contentfulSettings.descrizioneHomepage.descrizioneHomepage"
+    );
     const posts = get(this, "props.data.allContentfulEscursione.edges");
 
     return (
-      <Layout location={this.props.location}>
+      <Layout location={this.props.location} sidebarContent={sidebarContent}>
         <div style={{ background: "#fff" }}>
           <Helmet title={siteTitle} />
           <div className="wrapper">
             <ul className={styles.grid}>
               {posts.map(({ node }) => {
                 return (
-                  <>
-                    <li key={node.slug} className={styles.gridElement}>
-                      <EscursionePreview escursione={node} />
-                    </li>
-
-                    <li key={node.slug} className={styles.gridElement}>
-                      <EscursionePreview escursione={node} />
-                    </li>
-
-                    <li key={node.slug} className={styles.gridElement}>
-                      <EscursionePreview escursione={node} />
-                    </li>
-
-                    <li key={node.slug} className={styles.gridElement}>
-                      <EscursionePreview escursione={node} />
-                    </li>
-
-                    <li key={node.slug} className={styles.gridElement}>
-                      <EscursionePreview escursione={node} />
-                    </li>
-                  </>
+                  <li key={node.url} className={styles.gridElement}>
+                    <EscursionePreview escursione={node} />
+                  </li>
                 );
               })}
             </ul>
@@ -71,6 +57,16 @@ export const pageQuery = graphql`
             }
           }
         }
+      }
+    }
+
+    contentfulSettings(settings: { eq: "settings" }) {
+      nomeSito
+      descrizione {
+        descrizione
+      }
+      descrizioneHomepage {
+        descrizioneHomepage
       }
     }
   }
