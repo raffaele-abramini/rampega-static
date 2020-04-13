@@ -22,6 +22,7 @@ class EscursioneTemplate extends React.Component {
 
     const { photoIndex, isOpen } = this.state;
 
+    console.log(gallery[0]);
     return (
       <Layout location={this.props.location} notaFooter={notaFooter}>
         <Helmet title={`${escursione.titolo} | ${nomeSito}`} />
@@ -105,11 +106,11 @@ export const pageQuery = graphql`
       location
       dislivello
       gallery {
-        fluid(maxWidth: 1180, background: "rgb:999999") {
+        fluid(maxWidth: 300, background: "rgb:999999") {
           ...GatsbyContentfulFluid_tracedSVG
         }
         description
-        fixed {
+        fixed(width: 1400) {
           src
         }
       }
