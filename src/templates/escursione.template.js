@@ -83,10 +83,10 @@ class EscursioneTemplate extends React.Component {
   }
   handleGalleryClick = (i, e) => {
     e.preventDefault();
-    this.setState((state) => ({
+    this.setState({
       isOpen: true,
-      photoIndex: i + 1,
-    }));
+      photoIndex: i,
+    });
   };
 }
 
