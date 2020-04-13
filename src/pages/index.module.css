@@ -1,13 +1,13 @@
 .grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto;
-    grid-gap: 20px ;
-    margin: 0;
-    padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  grid-gap: 28px;
+  margin: 0;
+  padding: 0;
 }
 
 .gridElement {
-    position: relative;
-    list-style: none;
+  position: relative;
+  list-style: none;
 }

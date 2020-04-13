@@ -24,7 +24,6 @@
   left: 0;
   right: 0;
   display: flex;
-  flex-direction: column;
   font-size: 14px;
   padding: 40px;
 }
@@ -46,11 +45,28 @@
 }
 
 .heroTitle {
-  margin: auto 0 0;
+  margin: auto 24px 0 0;
   line-height: 1;
   font-size: 48px;
 
   font-family: rosewood-std-fill, serif;
   font-weight: 400;
   font-style: normal;
+}
+
+.sideDetails {
+  margin-left: auto;
+  align-self: flex-end;
+  text-align: right;
+}
+
+.sideDetailsP {
+  margin-top: 0;
+  margin-bottom: 16px;
+  line-height: 1;
+  font-size: 18px;
+}
+
+.sideDetailsP:last-child {
+  margin-bottom: 0;
 }

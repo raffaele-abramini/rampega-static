@@ -59,7 +59,7 @@ export const pageQuery = graphql`
         node {
           immagineDiCopertina {
             id
-            fluid(maxHeight: 200, maxWidth: 200) {
+            fluid(maxHeight: 560, maxWidth: 800) {
               ...GatsbyContentfulFluid_tracedSVG
             }
           }

@@ -26,13 +26,6 @@ class EscursioneTemplate extends React.Component {
         <div className={styles.main}>
           <div className={styles.textColumn}>
             <div className={styles.textColumnInner}>
-              <p
-                style={{
-                  display: "block",
-                }}
-              >
-                {escursione.data}
-              </p>
               <div
                 dangerouslySetInnerHTML={{
                   __html: escursione.resoconto.childMarkdownRemark.html,
@@ -43,17 +36,14 @@ class EscursioneTemplate extends React.Component {
           <div className={styles.galleryColumn}>
             <ul className={styles.gallery}>
               {escursione.gallery.map((g, i) => (
-                <li
-                  key={i}
-                  className={styles.galleryElement}
-                  onClick={() =>
-                    this.setState({
-                      toggler: !toggler,
-                      slide: i + 1,
-                    })
-                  }
-                >
-                  <Img alt={g.title} fluid={g.fluid} />
+                <li key={i} className={styles.galleryElement}>
+                  <button
+                    type="button"
+                    className={styles.galleryElementLink}
+                    onClick={(e) => this.handleGalleryClick(i, e)}
+                  >
+                    <Img alt={g.title} fluid={g.fluid} />
+                  </button>
                 </li>
               ))}
             </ul>
@@ -68,6 +58,13 @@ class EscursioneTemplate extends React.Component {
       </Layout>
     );
   }
+  handleGalleryClick = (i, e) => {
+    e.preventDefault();
+    this.setState((state) => ({
+      toggler: !state.toggler,
+      slide: i + 1,
+    }));
+  };
 }
 
 export default EscursioneTemplate;
@@ -82,6 +79,8 @@ export const pageQuery = graphql`
           ...GatsbyContentfulFluid_tracedSVG
         }
       }
+      location
+      dislivello
       gallery {
         fluid(maxWidth: 1180, background: "rgb:999999") {
           ...GatsbyContentfulFluid_tracedSVG

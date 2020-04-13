@@ -14,8 +14,8 @@ body {
   font-family: "Avenir", Tahoma, Arial, Helvetica, sans-serif;
   font-size: 1em;
   line-height: 1.65;
-  color: #373F49;
-  background: #eee;
+  color: #373f49;
+  background: #fff;
   margin: 0;
 }
 
@@ -36,9 +36,8 @@ a {
 }
 
 .wrapper {
-  width: calc(100% - 10vmin);
   margin: 0 auto;
-  padding: 5vmin 0;
+  padding: 28px 0;
 }
 
 /**
@@ -71,6 +70,6 @@ a {
   list-style: none;
 }
 
-  .list-inline li {
-    display: inline-block;
-  }
+.list-inline li {
+  display: inline-block;
+}
