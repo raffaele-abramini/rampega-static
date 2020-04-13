@@ -19,7 +19,6 @@ class EscursioneTemplate extends React.Component {
     const siteTitle = get(this.props, "data.site.siteMetadata.title");
     const { toggler, slide } = this.state;
 
-    console.log(escursione);
     return (
       <Layout location={this.props.location}>
         <Helmet title={`${escursione.titolo} | ${siteTitle}`} />
@@ -49,7 +48,7 @@ class EscursioneTemplate extends React.Component {
                   className={styles.galleryElement}
                   onClick={() =>
                     this.setState({
-                      toggler: true,
+                      toggler: !toggler,
                       slide: i + 1,
                     })
                   }
@@ -65,9 +64,6 @@ class EscursioneTemplate extends React.Component {
           toggler={toggler}
           sources={escursione.gallery.map((g) => g.fixed.src)}
           slide={slide}
-          onClose={() => {
-            setTimeout(() => this.setState({ toggler: false }), 500);
-          }}
         />
       </Layout>
     );
