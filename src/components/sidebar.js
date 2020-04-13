@@ -4,7 +4,7 @@ import { Link } from "gatsby";
 
 import cx from "classnames";
 
-export default ({ classNames, content }) => (
+export default ({ classNames, content, notaFooter }) => (
   <aside className={cx(classNames, styles.main)}>
     <div className={styles.topContent}>
       <h1 className={styles.rampega}>
@@ -14,7 +14,7 @@ export default ({ classNames, content }) => (
     </div>
     <div className={styles.bottomContent}>
       {content && <p className={styles.contentText}>{content}</p>}
-      <p className={styles.bottomText}>Eccoci qua</p>
+      <p className={styles.bottomText}>{notaFooter}</p>
     </div>
   </aside>
 );

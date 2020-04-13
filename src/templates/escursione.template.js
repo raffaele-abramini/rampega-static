@@ -16,13 +16,17 @@ class EscursioneTemplate extends React.Component {
 
   render() {
     const escursione = get(this.props, "data.contentfulEscursione");
-    const siteTitle = get(this, "props.data.contentfulSettings.nomeSito");
+
+    const {
+      nomeSito,
+      notaFooter: { notaFooter },
+    } = get(this, "props.data.contentfulSettings");
 
     const { toggler, slide } = this.state;
 
     return (
-      <Layout location={this.props.location}>
-        <Helmet title={`${escursione.titolo} | ${siteTitle}`} />
+      <Layout location={this.props.location} notaFooter={notaFooter}>
+        <Helmet title={`${escursione.titolo} | ${nomeSito}`} />
         <Hero escursione={escursione} />
         <div className={styles.main}>
           <div className={styles.textColumn}>
@@ -99,6 +103,9 @@ export const pageQuery = graphql`
 
     contentfulSettings(settings: { eq: "settings" }) {
       nomeSito
+      notaFooter {
+        notaFooter
+      }
     }
   }
 `;

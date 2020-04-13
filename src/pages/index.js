@@ -8,17 +8,21 @@ import EscursionePreview from "../components/escursione-preview";
 
 class RootIndex extends React.Component {
   render() {
-    const siteTitle = get(this, "props.data.contentfulSettings.nomeSito");
-    const sidebarContent = get(
-      this,
-      "props.data.contentfulSettings.descrizioneHomepage.descrizioneHomepage"
-    );
+    const {
+      nomeSito,
+      notaFooter: { notaFooter },
+      descrizioneHomepage: { descrizioneHomepage },
+    } = get(this, "props.data.contentfulSettings");
     const posts = get(this, "props.data.allContentfulEscursione.edges");
 
     return (
-      <Layout location={this.props.location} sidebarContent={sidebarContent}>
+      <Layout
+        location={this.props.location}
+        sidebarContent={descrizioneHomepage}
+        notaFooter={notaFooter}
+      >
         <div style={{ background: "#fff" }}>
-          <Helmet title={siteTitle} />
+          <Helmet title={nomeSito} />
           <div className="wrapper">
             <ul className={styles.grid}>
               {posts.map(({ node }) => {
@@ -67,6 +71,9 @@ export const pageQuery = graphql`
       }
       descrizioneHomepage {
         descrizioneHomepage
+      }
+      notaFooter {
+        notaFooter
       }
     }
   }
