@@ -6,23 +6,21 @@ import Img from "gatsby-image";
 import Layout from "../components/layout";
 import Hero from "../components/hero";
 import styles from "./escursione.template.module.css";
-import FsLightbox from "fslightbox-react";
+import Lightbox from "react-image-lightbox";
 
 class EscursioneTemplate extends React.Component {
-  state = {
-    toggler: false,
-    slide: 1,
-  };
+  state = { photoIndex: 0, isOpen: false };
 
   render() {
     const escursione = get(this.props, "data.contentfulEscursione");
 
+    const { gallery } = escursione;
     const {
       nomeSito,
       notaFooter: { notaFooter },
     } = get(this, "props.data.contentfulSettings");
 
-    const { toggler, slide } = this.state;
+    const { photoIndex, isOpen } = this.state;
 
     return (
       <Layout location={this.props.location} notaFooter={notaFooter}>
@@ -55,19 +53,39 @@ class EscursioneTemplate extends React.Component {
           </div>
         </div>
 
-        <FsLightbox
-          toggler={toggler}
-          sources={escursione.gallery.map((g) => g.fixed.src)}
-          slide={slide}
-        />
+        {isOpen && (
+          <Lightbox
+            mainSrc={gallery[photoIndex].fixed.src}
+            nextSrc={gallery[(photoIndex + 1) % gallery.length].fixed.src}
+            prevSrc={
+              gallery[(photoIndex + gallery.length - 1) % gallery.length].fixed
+                .src
+            }
+            imageTitle={gallery[photoIndex].description}
+            onCloseRequest={() => this.setState({ isOpen: false })}
+            onMovePrevRequest={() =>
+              this.setState({
+                photoIndex: (photoIndex + gallery.length - 1) % gallery.length,
+              })
+            }
+            onMoveNextRequest={() =>
+              this.setState({
+                photoIndex: (photoIndex + 1) % gallery.length,
+              })
+            }
+            captions={gallery.map((g) => g.description)}
+            animationDisabled={false}
+            enableZoom={false}
+          />
+        )}
       </Layout>
     );
   }
   handleGalleryClick = (i, e) => {
     e.preventDefault();
     this.setState((state) => ({
-      toggler: !state.toggler,
-      slide: i + 1,
+      isOpen: true,
+      photoIndex: i + 1,
     }));
   };
 }
@@ -90,6 +108,7 @@ export const pageQuery = graphql`
         fluid(maxWidth: 1180, background: "rgb:999999") {
           ...GatsbyContentfulFluid_tracedSVG
         }
+        description
         fixed {
           src
         }
