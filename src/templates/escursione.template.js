@@ -54,7 +54,7 @@ class EscursioneTemplate extends React.Component {
           </div>
         </div>
 
-        {isOpen && (
+        {isOpen && gallery?.length && (
           <Lightbox
             mainSrc={gallery[photoIndex].fixed.src}
             nextSrc={gallery[(photoIndex + 1) % gallery.length].fixed.src}

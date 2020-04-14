@@ -9,6 +9,7 @@
 .textColumn {
   display: flex;
   padding-left: 28px;
+  font-size: 18px;
 }
 .textColumnInner {
   flex: 0 1 640px;

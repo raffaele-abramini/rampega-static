@@ -21,19 +21,17 @@ class RootIndex extends React.Component {
         sidebarContent={descrizioneHomepage}
         notaFooter={notaFooter}
       >
-        <div style={{ background: "#fff" }}>
-          <Helmet title={nomeSito} />
-          <div className="wrapper">
-            <ul className={styles.grid}>
-              {posts.map(({ node }) => {
-                return (
-                  <li key={node.url} className={styles.gridElement}>
-                    <EscursionePreview escursione={node} />
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+        <Helmet title={nomeSito} />
+        <div className="wrapper">
+          <ul className={styles.grid}>
+            {posts.map(({ node }) => {
+              return (
+                <li key={node.url} className={styles.gridElement}>
+                  <EscursionePreview escursione={node} />
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </Layout>
     );
@@ -44,7 +42,10 @@ export default RootIndex;
 
 export const pageQuery = graphql`
   query HomeQuery {
-    allContentfulEscursione(sort: { fields: [data], order: DESC }) {
+    allContentfulEscursione(
+      sort: { fields: [data], order: DESC }
+      filter: { node_locale: { eq: "it" } }
+    ) {
       edges {
         node {
           immagineDiCopertina {

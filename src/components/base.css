@@ -14,8 +14,8 @@ body {
   font-family: "Avenir", Tahoma, Arial, Helvetica, sans-serif;
   font-size: 1em;
   line-height: 1.65;
-  color: #373f49;
-  background: #fff;
+  color: #383833;
+  background: #fff8f0;
   margin: 0;
 }
 
@@ -29,6 +29,16 @@ h2,
 h3 {
   font-size: 2em;
   font-weight: normal;
+}
+
+h1 {
+  font-size: 2.488em;
+}
+h2 {
+  font-size: 2.074em;
+}
+h3 {
+  font-size: 1.728em;
 }
 
 a {

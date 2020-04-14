@@ -4,16 +4,14 @@ import Img from "gatsby-image";
 
 import styles from "./escursione-preview.module.css";
 
-export default ({ escursione }) => (
+export default ({ escursione: { url, immagineDiCopertina, titolo } }) => (
   <article>
-    <Link to={`/escursioni/${escursione.url}`} className={styles.main}>
-      <Img
-        className={styles.img}
-        alt=""
-        fluid={escursione.immagineDiCopertina.fluid}
-      />
+    <Link to={`/escursioni/${url}`} className={styles.main}>
+      {immagineDiCopertina && (
+        <Img className={styles.img} alt="" fluid={immagineDiCopertina.fluid} />
+      )}
       <div className={styles.text}>
-        <h3 className={styles.title}>{escursione.titolo}</h3>
+        <h3 className={styles.title}>{titolo}</h3>
       </div>
     </Link>
   </article>

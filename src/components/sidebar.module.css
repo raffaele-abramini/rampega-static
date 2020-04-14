@@ -25,6 +25,8 @@
 
 .est {
   margin: 0;
+  font-size: 14px;
+  letter-spacing: 2px;
 }
 
 .contentText {
@@ -35,5 +37,5 @@
   margin-top: 20px;
   border-top: 1px solid #ccc;
   color: #666;
-  font-size: 14px;
+  font-size: 12px;
 }
