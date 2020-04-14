@@ -106,11 +106,11 @@ export const pageQuery = graphql`
       location
       dislivello
       gallery {
-        fluid(maxWidth: 300, background: "rgb:999999") {
+        fluid(maxWidth: 300, maxHeight: 200, background: "rgb:999999") {
           ...GatsbyContentfulFluid_tracedSVG
         }
         description
-        fixed(width: 1400) {
+        fixed(width: 1400, quality: 90) {
           src
         }
       }

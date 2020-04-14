@@ -16,9 +16,14 @@
   top: 0;
   display: flex;
   flex-direction: column;
-  color: #fff;
+  color: var(--beige);
   padding: 20px;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.25);
+  transition: background-color 0.1s;
+}
+
+.text:hover {
+  background: rgba(96, 113, 142, 0.9);
 }
 
 .title {
