@@ -1,3 +1,8 @@
+:root {
+  --beige: #fff8f0;
+  --darkGray: #383833;
+}
+
 @font-face {
   font-family: "Avenir";
   font-weight: 400;
@@ -14,8 +19,8 @@ body {
   font-family: "Avenir", Tahoma, Arial, Helvetica, sans-serif;
   font-size: 1em;
   line-height: 1.65;
-  color: #383833;
-  background: #fff8f0;
+  color: var(--darkGray);
+  background: var(--beige);
   margin: 0;
 }
 

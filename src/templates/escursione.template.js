@@ -22,7 +22,6 @@ class EscursioneTemplate extends React.Component {
 
     const { photoIndex, isOpen } = this.state;
 
-    console.log(gallery[0]);
     return (
       <Layout location={this.props.location} notaFooter={notaFooter}>
         <Helmet title={`${escursione.titolo} | ${nomeSito}`} />
@@ -39,17 +38,18 @@ class EscursioneTemplate extends React.Component {
           </div>
           <div className={styles.galleryColumn}>
             <ul className={styles.gallery}>
-              {escursione.gallery.map((g, i) => (
-                <li key={i} className={styles.galleryElement}>
-                  <button
-                    type="button"
-                    className={styles.galleryElementLink}
-                    onClick={(e) => this.handleGalleryClick(i, e)}
-                  >
-                    <Img alt={g.title} fluid={g.fluid} />
-                  </button>
-                </li>
-              ))}
+              {escursione.gallery &&
+                escursione.gallery.map((g, i) => (
+                  <li key={i} className={styles.galleryElement}>
+                    <button
+                      type="button"
+                      className={styles.galleryElementLink}
+                      onClick={(e) => this.handleGalleryClick(i, e)}
+                    >
+                      <Img alt={g.title} fluid={g.fluid} />
+                    </button>
+                  </li>
+                ))}
             </ul>
           </div>
         </div>
