@@ -5,13 +5,18 @@ import get from "lodash/get";
 import Img from "gatsby-image";
 import Layout from "../components/layout";
 import Hero from "../components/hero";
+import SideDetails from "../components/side-details";
 import styles from "./escursione.template.module.css";
 import Lightbox from "react-image-lightbox";
+import { GiMountaintop } from "react-icons/gi";
 
 class EscursioneTemplate extends React.Component {
   state = { photoIndex: 0, isOpen: false };
 
   render() {
+    /**
+     * @type ContentfulEscursione
+     */
     const escursione = get(this.props, "data.contentfulEscursione");
 
     const { gallery } = escursione;
@@ -37,6 +42,20 @@ class EscursioneTemplate extends React.Component {
             </div>
           </div>
           <div className={styles.galleryColumn}>
+            <SideDetails escursione={escursione}>
+              {escursione.cimeRaggiunte && (
+                <div className={styles.cimeRaggiunte}>
+                  {escursione.cimeRaggiunte.map((c) => (
+                    <div className={styles.cimaRaggiunta}>
+                      <span className={styles.cimaIcon}>
+                        <GiMountaintop />
+                      </span>
+                      {c}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </SideDetails>
             <ul className={styles.gallery}>
               {escursione.gallery &&
                 escursione.gallery.map((g, i) => (
@@ -105,6 +124,8 @@ export const pageQuery = graphql`
       }
       location
       dislivello
+      durata
+      cimeRaggiunte
       gallery {
         fluid(maxWidth: 300, maxHeight: 200, background: "rgb:999999") {
           ...GatsbyContentfulFluid_tracedSVG
