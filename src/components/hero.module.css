@@ -1,6 +1,8 @@
 .hero {
   position: relative;
   color: #fff;
+  border-bottom-left-radius: 50px;
+  overflow: hidden;
 }
 
 .heroImage {

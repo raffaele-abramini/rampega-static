@@ -8,7 +8,6 @@ import Hero from "../components/hero";
 import SideDetails from "../components/side-details";
 import styles from "./escursione.template.module.css";
 import Lightbox from "react-image-lightbox";
-import { GiMountaintop } from "react-icons/gi";
 
 class EscursioneTemplate extends React.Component {
   state = { photoIndex: 0, isOpen: false };
@@ -42,20 +41,7 @@ class EscursioneTemplate extends React.Component {
             </div>
           </div>
           <div className={styles.galleryColumn}>
-            <SideDetails escursione={escursione}>
-              {escursione.cimeRaggiunte && (
-                <div className={styles.cimeRaggiunte}>
-                  {escursione.cimeRaggiunte.map((c) => (
-                    <div className={styles.cimaRaggiunta}>
-                      <span className={styles.cimaIcon}>
-                        <GiMountaintop />
-                      </span>
-                      {c}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </SideDetails>
+            <SideDetails escursione={escursione} />
             <ul className={styles.gallery}>
               {escursione.gallery &&
                 escursione.gallery.map((g, i) => (
@@ -125,7 +111,9 @@ export const pageQuery = graphql`
       }
       location
       dislivello
+      puntoDiPartenza
       durata
+      rifugi
       cimeRaggiunte
       gallery {
         fluid(maxWidth: 300, maxHeight: 200, background: "rgb:999999") {

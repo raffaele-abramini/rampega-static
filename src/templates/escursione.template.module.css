@@ -52,25 +52,3 @@
 .slideshow img {
   width: unset;
 }
-
-.cimeRaggiunte {
-  margin-bottom: 56px;
-  font-size: 18px;
-  color: var(--beige);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-.cimaRaggiunta {
-  display: flex;
-  align-items: center;
-  line-height: 1;
-  font-weight: bold;
-}
-
-.cimaIcon {
-  font-size: 30px;
-  display: flex;
-  align-items: center;
-  padding-right: 12px;
-}
