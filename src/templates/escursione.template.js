@@ -18,7 +18,7 @@ class EscursioneTemplate extends React.Component {
      */
     const escursione = get(this.props, "data.contentfulEscursione");
 
-    const { gallery } = escursione;
+    const { gallery, resoconto } = escursione;
     const {
       nomeSito,
       notaFooter: { notaFooter },
@@ -33,11 +33,13 @@ class EscursioneTemplate extends React.Component {
         <div className={styles.main}>
           <div className={styles.textColumn}>
             <div className={styles.textColumnInner}>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: escursione.resoconto.childMarkdownRemark.html,
-                }}
-              />
+              {resoconto && (
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: resoconto.childMarkdownRemark.html,
+                  }}
+                />
+              )}
             </div>
           </div>
           <div className={styles.galleryColumn}>
