@@ -47,6 +47,12 @@
   cursor: pointer;
 }
 
+.slideshow {
+}
+.slideshow img {
+  width: unset;
+}
+
 .cimeRaggiunte {
   margin-bottom: 56px;
   font-size: 18px;

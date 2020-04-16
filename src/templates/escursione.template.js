@@ -75,6 +75,7 @@ class EscursioneTemplate extends React.Component {
 
         {isOpen && gallery?.length && (
           <Lightbox
+            wrapperClassName={styles.slideshow}
             mainSrc={gallery[photoIndex].fixed.src}
             nextSrc={gallery[(photoIndex + 1) % gallery.length].fixed.src}
             prevSrc={
@@ -94,8 +95,8 @@ class EscursioneTemplate extends React.Component {
               })
             }
             captions={gallery.map((g) => g.description)}
-            animationDisabled={false}
-            enableZoom={false}
+            enableZoom
+            imagePadding={56}
           />
         )}
       </Layout>
