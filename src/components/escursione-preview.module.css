@@ -36,3 +36,10 @@
   margin-bottom: 0;
   margin-right: 100px;
 }
+
+@media only screen and (max-width: 767px) {
+  .title {
+    margin-right: 50px;
+    font-size: 22px;
+  }
+}

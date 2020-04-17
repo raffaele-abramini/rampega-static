@@ -40,3 +40,21 @@
   color: #666;
   font-size: 12px;
 }
+
+@media only screen and (max-width: 767px) {
+  .main {
+    padding: 12px;
+  }
+  .topContent {
+    margin-bottom: 0;
+  }
+  .rampega {
+    font-size: 18px;
+  }
+  .est {
+    font-size: 10px;
+  }
+  .bottomContent {
+    display: none;
+  }
+}
