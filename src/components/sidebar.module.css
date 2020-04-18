@@ -47,9 +47,13 @@
   }
   .topContent {
     margin-bottom: 0;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
   }
+
   .rampega {
-    font-size: 18px;
+    font-size: 20px;
   }
   .est {
     font-size: 10px;
