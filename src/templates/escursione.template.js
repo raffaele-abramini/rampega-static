@@ -46,9 +46,9 @@ class EscursioneTemplate extends React.Component {
             <SideDetails escursione={escursione} />
             <ul
               className={styles.gallery}
-              style={{ "--totalSlides": escursione?.gallery.length || 0 }}
+              style={{ "--totalSlides": escursione.gallery?.length || 0 }}
             >
-              {escursione?.gallery.map((g, i) => (
+              {escursione.gallery?.map((g, i) => (
                 <li key={i} className={styles.galleryElement}>
                   <button
                     type="button"
