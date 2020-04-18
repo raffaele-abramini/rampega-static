@@ -34,3 +34,27 @@
 
 .dd {
 }
+
+@media only screen and (max-width: 767px) {
+  .main {
+    padding: 16px;
+    font-size: 14px;
+    margin-bottom: 28px;
+  }
+
+  * + .dettagliArea {
+    margin-top: 4px;
+  }
+
+  .header {
+    margin-top: 0;
+  }
+
+  .dt {
+    min-width: 0;
+    margin-right: 10px;
+  }
+  .dd {
+    margin-left: auto;
+  }
+}

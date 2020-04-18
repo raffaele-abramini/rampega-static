@@ -44,19 +44,21 @@ class EscursioneTemplate extends React.Component {
           </div>
           <div className={styles.galleryColumn}>
             <SideDetails escursione={escursione} />
-            <ul className={styles.gallery}>
-              {escursione.gallery &&
-                escursione.gallery.map((g, i) => (
-                  <li key={i} className={styles.galleryElement}>
-                    <button
-                      type="button"
-                      className={styles.galleryElementLink}
-                      onClick={(e) => this.handleGalleryClick(i, e)}
-                    >
-                      <Img alt={g.title} fluid={g.fluid} />
-                    </button>
-                  </li>
-                ))}
+            <ul
+              className={styles.gallery}
+              style={{ "--totalSlides": escursione?.gallery.length || 0 }}
+            >
+              {escursione?.gallery.map((g, i) => (
+                <li key={i} className={styles.galleryElement}>
+                  <button
+                    type="button"
+                    className={styles.galleryElementLink}
+                    onClick={(e) => this.handleGalleryClick(i, e)}
+                  >
+                    <Img alt={g.title} fluid={g.fluid} />
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
