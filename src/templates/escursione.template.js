@@ -86,7 +86,7 @@ class EscursioneTemplate extends React.Component {
             }
             captions={gallery.map((g) => g.description)}
             enableZoom
-            imagePadding={56}
+            imagePadding={window.innerWidth > 767 ? 65 : 5}
           />
         )}
       </Layout>
