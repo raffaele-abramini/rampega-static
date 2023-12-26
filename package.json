@@ -38,7 +38,7 @@
   "scripts": {
     "dev": "gatsby develop",
     "build": "gatsby build",
-    "ship": "rm -rf .cache && gatsby build && netlify deploy",
+    "ship": "netlify deploy",
     "serve": "gatsby serve",
     "setup": "npm install --no-save contentful-import yargs-parser axios chalk && node ./setup.js"
   },

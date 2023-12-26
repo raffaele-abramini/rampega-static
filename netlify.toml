@@ -2,5 +2,6 @@
   ID = "3b199ca0-d6e3-4b7f-a7e2-50b0d548968f"
 
 [Build]
-  Publish = ""
-  Functions = ""
+  base = "."
+  publish = "publish/"
+  command = "rm -rf .cache && gatsby build"
