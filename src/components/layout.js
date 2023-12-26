@@ -1,6 +1,6 @@
 import React from "react";
 import "./base.css";
-// import "react-image-lightbox/style.css";
+import 'photoswipe/dist/photoswipe.css'
 import Container from "./container";
 import Sidebar from "./sidebar";
 import * as styles from "./layout.module.css";
