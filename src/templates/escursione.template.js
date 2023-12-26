@@ -2,7 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import Helmet from "react-helmet";
 import get from "lodash/get";
-import Img from "gatsby-image";
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import Layout from "../components/layout";
 import Hero from "../components/hero";
 import SideDetails from "../components/side-details";
@@ -17,6 +17,7 @@ class EscursioneTemplate extends React.Component {
      * @type ContentfulEscursione
      */
     const escursione = get(this.props, "data.contentfulEscursione");
+    // const image = getImage()
 
     const { gallery, resoconto } = escursione;
     const {
@@ -55,7 +56,7 @@ class EscursioneTemplate extends React.Component {
                     className={styles.galleryElementLink}
                     onClick={(e) => this.handleGalleryClick(i, e)}
                   >
-                    <Img alt={g.title} fluid={g.fluid} />
+                    {/*<Img alt={g.title} fluid={g.fluid} />*/}
                   </button>
                 </li>
               ))}
@@ -108,27 +109,27 @@ export const pageQuery = graphql`
     contentfulEscursione(url: { eq: $url }) {
       titolo
       data(formatString: "MMMM Do, YYYY")
-#      immagineDiCopertina {
-#          descrizione
-##        fluid(maxWidth: 1180, background: "rgb:999999") {
-##          ...GatsbyContentfulFluid_tracedSVG
-##        }
-#      }
+      immagineDiCopertina {
+              gatsbyImageData(
+                  width: 1180
+                  layout: FULL_WIDTH
+              )
+      }
       location
       dislivello
       puntoDiPartenza
       durata
       rifugi
       cimeRaggiunte
-      gallery {
-#        fluid(maxWidth: 300, maxHeight: 200, background: "rgb:999999") {
-#          ...GatsbyContentfulFluid_tracedSVG
-#        }
-        description
-#        fixed(width: 1400, quality: 90) {
-#          src
-#        }
-      }
+#      gallery {
+##        fluid(maxWidth: 300, maxHeight: 200, background: "rgb:999999") {
+##          ...GatsbyContentfulFluid_tracedSVG
+##        }
+#        description
+##        fixed(width: 1400, quality: 90) {
+##          src
+##        }
+#      }
       resoconto {
         childMarkdownRemark {
           html

@@ -46,7 +46,13 @@ export const pageQuery = graphql`
           edges {
               node {
                   immagineDiCopertina {
-                      gatsbyImage
+                      gatsbyImageData(
+                          height: 560
+                          width: 800
+                          placeholder: DOMINANT_COLOR
+                          formats: [AUTO, WEBP, AVIF]
+                          resizingBehavior: CROP
+                      )
                   }
                   titolo
                   url
