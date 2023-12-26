@@ -24,7 +24,7 @@ class EscursioneTemplate extends React.Component {
     } = get(this, "props.data.contentfulSettings");
 
     return (
-      <Layout location={this.props.location} notaFooter={notaFooter}>
+      <Layout location={this.props.location} notaFooter={notaFooter} goBack>
         <Helmet title={`${escursione.titolo} | ${nomeSito}`} />
         <Hero escursione={escursione} />
         <div className={styles.main}>

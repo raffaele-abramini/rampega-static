@@ -42,40 +42,45 @@ export default RootIndex;
 
 export const pageQuery = graphql`
   query HomeQuery {
-      allContentfulEscursione(sort: {data: DESC}, filter: {node_locale: {eq: "it"}}) {
-          edges {
-              node {
-                  immagineDiCopertina {
-                      gatsbyImageData(
-                          height: 560
-                          width: 800
-                          placeholder: DOMINANT_COLOR
-                          resizingBehavior: CROP
-                      )
-                  }
-                  titolo
-                  url
-                  resoconto {
-                      childMarkdownRemark {
-                          html
-                      }
-                  }
-              }
+    allContentfulEscursione(
+      sort: { data: DESC }
+      filter: { node_locale: { eq: "it" } }
+    ) {
+      edges {
+        node {
+          immagineDiCopertina {
+            gatsbyImageData(
+              height: 560
+              width: 800
+              placeholder: DOMINANT_COLOR
+              resizingBehavior: CROP
+            )
           }
+          data
+          titolo
+          url
+          resoconto {
+            childMarkdownRemark {
+              html
+            }
+          }
+        }
       }
-      contentfulSettings(settings: {eq: "settings"}) {
-          nomeSito
-          descrizione {
-              descrizione
-          }
-          descrizioneHomepage {
-              descrizioneHomepage
-          }
-          notaFooter {
-              notaFooter
-          }
+    }
+    contentfulSettings(settings: { eq: "settings" }) {
+      nomeSito
+      descrizione {
+        descrizione
       }
-  }`;
+      descrizioneHomepage {
+        descrizioneHomepage
+      }
+      notaFooter {
+        notaFooter
+      }
+    }
+  }
+`;
 
 //
 // #            fluid(maxHeight: 560, maxWidth: 800) {
