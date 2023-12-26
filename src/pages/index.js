@@ -3,7 +3,7 @@ import { graphql } from "gatsby";
 import get from "lodash/get";
 import Helmet from "react-helmet";
 import Layout from "../components/layout";
-import styles from "./index.module.css";
+import * as styles from "./index.module.css";
 import EscursionePreview from "../components/escursione-preview";
 
 class RootIndex extends React.Component {
@@ -42,40 +42,37 @@ export default RootIndex;
 
 export const pageQuery = graphql`
   query HomeQuery {
-    allContentfulEscursione(
-      sort: { fields: [data], order: DESC }
-      filter: { node_locale: { eq: "it" } }
-    ) {
-      edges {
-        node {
-          immagineDiCopertina {
-            id
-            fluid(maxHeight: 560, maxWidth: 800) {
-              ...GatsbyContentfulFluid_tracedSVG
-            }
+      allContentfulEscursione(sort: {data: DESC}, filter: {node_locale: {eq: "it"}}) {
+          edges {
+              node {
+                  immagineDiCopertina {
+                      gatsbyImage
+                  }
+                  titolo
+                  url
+                  resoconto {
+                      childMarkdownRemark {
+                          html
+                      }
+                  }
+              }
           }
-          titolo
-          url
-          resoconto {
-            childMarkdownRemark {
-              html
-            }
-          }
-        }
       }
-    }
+      contentfulSettings(settings: {eq: "settings"}) {
+          nomeSito
+          descrizione {
+              descrizione
+          }
+          descrizioneHomepage {
+              descrizioneHomepage
+          }
+          notaFooter {
+              notaFooter
+          }
+      }
+  }`;
 
-    contentfulSettings(settings: { eq: "settings" }) {
-      nomeSito
-      descrizione {
-        descrizione
-      }
-      descrizioneHomepage {
-        descrizioneHomepage
-      }
-      notaFooter {
-        notaFooter
-      }
-    }
-  }
-`;
+//
+// #            fluid(maxHeight: 560, maxWidth: 800) {
+// #              ...GatsbyContentfulFluid_tracedSVG
+// #            }

@@ -1,6 +1,6 @@
 import React from "react";
 import "./base.css";
-import "react-image-lightbox/style.css";
+// import "react-image-lightbox/style.css";
 import Container from "./container";
 import Sidebar from "./sidebar";
 import styles from "./layout.module.css";

@@ -7,7 +7,7 @@ import Layout from "../components/layout";
 import Hero from "../components/hero";
 import SideDetails from "../components/side-details";
 import styles from "./escursione.template.module.css";
-import Lightbox from "react-image-lightbox";
+// import Lightbox from "react-image-lightbox";
 
 class EscursioneTemplate extends React.Component {
   state = { photoIndex: 0, isOpen: false };
@@ -63,32 +63,32 @@ class EscursioneTemplate extends React.Component {
           </div>
         </div>
 
-        {isOpen && gallery?.length && (
-          <Lightbox
-            wrapperClassName={styles.slideshow}
-            mainSrc={gallery[photoIndex].fixed.src}
-            nextSrc={gallery[(photoIndex + 1) % gallery.length].fixed.src}
-            prevSrc={
-              gallery[(photoIndex + gallery.length - 1) % gallery.length].fixed
-                .src
-            }
-            imageTitle={gallery[photoIndex].description}
-            onCloseRequest={() => this.setState({ isOpen: false })}
-            onMovePrevRequest={() =>
-              this.setState({
-                photoIndex: (photoIndex + gallery.length - 1) % gallery.length,
-              })
-            }
-            onMoveNextRequest={() =>
-              this.setState({
-                photoIndex: (photoIndex + 1) % gallery.length,
-              })
-            }
-            captions={gallery.map((g) => g.description)}
-            enableZoom
-            imagePadding={window.innerWidth > 767 ? 65 : 5}
-          />
-        )}
+        {/*{isOpen && gallery?.length && (*/}
+        {/*  <Lightbox*/}
+        {/*    wrapperClassName={styles.slideshow}*/}
+        {/*    mainSrc={gallery[photoIndex].fixed.src}*/}
+        {/*    nextSrc={gallery[(photoIndex + 1) % gallery.length].fixed.src}*/}
+        {/*    prevSrc={*/}
+        {/*      gallery[(photoIndex + gallery.length - 1) % gallery.length].fixed*/}
+        {/*        .src*/}
+        {/*    }*/}
+        {/*    imageTitle={gallery[photoIndex].description}*/}
+        {/*    onCloseRequest={() => this.setState({ isOpen: false })}*/}
+        {/*    onMovePrevRequest={() =>*/}
+        {/*      this.setState({*/}
+        {/*        photoIndex: (photoIndex + gallery.length - 1) % gallery.length,*/}
+        {/*      })*/}
+        {/*    }*/}
+        {/*    onMoveNextRequest={() =>*/}
+        {/*      this.setState({*/}
+        {/*        photoIndex: (photoIndex + 1) % gallery.length,*/}
+        {/*      })*/}
+        {/*    }*/}
+        {/*    captions={gallery.map((g) => g.description)}*/}
+        {/*    enableZoom*/}
+        {/*    imagePadding={window.innerWidth > 767 ? 65 : 5}*/}
+        {/*  />*/}
+        {/*)}*/}
       </Layout>
     );
   }
@@ -108,11 +108,12 @@ export const pageQuery = graphql`
     contentfulEscursione(url: { eq: $url }) {
       titolo
       data(formatString: "MMMM Do, YYYY")
-      immagineDiCopertina {
-        fluid(maxWidth: 1180, background: "rgb:999999") {
-          ...GatsbyContentfulFluid_tracedSVG
-        }
-      }
+#      immagineDiCopertina {
+#          descrizione
+##        fluid(maxWidth: 1180, background: "rgb:999999") {
+##          ...GatsbyContentfulFluid_tracedSVG
+##        }
+#      }
       location
       dislivello
       puntoDiPartenza
@@ -120,13 +121,13 @@ export const pageQuery = graphql`
       rifugi
       cimeRaggiunte
       gallery {
-        fluid(maxWidth: 300, maxHeight: 200, background: "rgb:999999") {
-          ...GatsbyContentfulFluid_tracedSVG
-        }
+#        fluid(maxWidth: 300, maxHeight: 200, background: "rgb:999999") {
+#          ...GatsbyContentfulFluid_tracedSVG
+#        }
         description
-        fixed(width: 1400, quality: 90) {
-          src
-        }
+#        fixed(width: 1400, quality: 90) {
+#          src
+#        }
       }
       resoconto {
         childMarkdownRemark {
