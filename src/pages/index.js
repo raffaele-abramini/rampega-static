@@ -3,7 +3,7 @@ import { graphql } from "gatsby";
 import get from "lodash/get";
 import Helmet from "react-helmet";
 import Layout from "../components/layout";
-import styles from "./index.module.css";
+import * as styles from "./index.module.css";
 import EscursionePreview from "../components/escursione-preview";
 
 class RootIndex extends React.Component {
@@ -43,17 +43,20 @@ export default RootIndex;
 export const pageQuery = graphql`
   query HomeQuery {
     allContentfulEscursione(
-      sort: { fields: [data], order: DESC }
+      sort: { data: DESC }
       filter: { node_locale: { eq: "it" } }
     ) {
       edges {
         node {
           immagineDiCopertina {
-            id
-            fluid(maxHeight: 560, maxWidth: 800) {
-              ...GatsbyContentfulFluid_tracedSVG
-            }
+            gatsbyImageData(
+              height: 560
+              width: 800
+              placeholder: DOMINANT_COLOR
+              resizingBehavior: CROP
+            )
           }
+          data
           titolo
           url
           resoconto {
@@ -64,7 +67,6 @@ export const pageQuery = graphql`
         }
       }
     }
-
     contentfulSettings(settings: { eq: "settings" }) {
       nomeSito
       descrizione {
@@ -79,3 +81,8 @@ export const pageQuery = graphql`
     }
   }
 `;
+
+//
+// #            fluid(maxHeight: 560, maxWidth: 800) {
+// #              ...GatsbyContentfulFluid_tracedSVG
+// #            }

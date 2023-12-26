@@ -2,21 +2,20 @@ import React from "react";
 import { graphql } from "gatsby";
 import Helmet from "react-helmet";
 import get from "lodash/get";
-import Img from "gatsby-image";
+import { getImage } from "gatsby-plugin-image";
 import Layout from "../components/layout";
 import Hero from "../components/hero";
 import SideDetails from "../components/side-details";
-import styles from "./escursione.template.module.css";
-import Lightbox from "react-image-lightbox";
+import * as styles from "./escursione.template.module.css";
+import { Gallery, Item } from "react-photoswipe-gallery";
 
 class EscursioneTemplate extends React.Component {
-  state = { photoIndex: 0, isOpen: false };
-
   render() {
     /**
      * @type ContentfulEscursione
      */
     const escursione = get(this.props, "data.contentfulEscursione");
+    // const image = getImage()
 
     const { gallery, resoconto } = escursione;
     const {
@@ -24,10 +23,8 @@ class EscursioneTemplate extends React.Component {
       notaFooter: { notaFooter },
     } = get(this, "props.data.contentfulSettings");
 
-    const { photoIndex, isOpen } = this.state;
-
     return (
-      <Layout location={this.props.location} notaFooter={notaFooter}>
+      <Layout location={this.props.location} notaFooter={notaFooter} goBack>
         <Helmet title={`${escursione.titolo} | ${nomeSito}`} />
         <Hero escursione={escursione} />
         <div className={styles.main}>
@@ -44,61 +41,47 @@ class EscursioneTemplate extends React.Component {
           </div>
           <div className={styles.galleryColumn}>
             <SideDetails escursione={escursione} />
-            <ul
+            <div
               className={styles.gallery}
               style={{ "--totalSlides": escursione.gallery?.length || 0 }}
             >
-              {escursione.gallery?.map((g, i) => (
-                <li key={i} className={styles.galleryElement}>
-                  <button
-                    type="button"
-                    className={styles.galleryElementLink}
-                    onClick={(e) => this.handleGalleryClick(i, e)}
-                  >
-                    <Img alt={g.title} fluid={g.fluid} />
-                  </button>
-                </li>
-              ))}
-            </ul>
+              <Gallery
+                options={{
+                  // initialZoomLevel: 10,
+                  showHideAnimationType: "fade",
+                }}
+              >
+                {escursione.gallery?.map((galleryItem, i) => {
+                  const full = getImage(galleryItem.full);
+                  const preview = getImage(galleryItem.preview);
+                  return (
+                    <Item
+                      original={full.images.fallback.src}
+                      originalSrcset={full.images.sources[0]?.srcSet}
+                      key={galleryItem.filename}
+                    >
+                      {({ ref, open }) => (
+                        <div className={styles.galleryElement}>
+                          <img
+                            className={styles.galleryElementLink}
+                            alt={galleryItem.title}
+                            srcSet={preview.images.sources[0]?.srcSet}
+                            sizes={preview.images.sources[0]?.sizes}
+                            ref={ref}
+                            onClick={open}
+                          />
+                        </div>
+                      )}
+                    </Item>
+                  );
+                })}
+              </Gallery>
+            </div>
           </div>
         </div>
-
-        {isOpen && gallery?.length && (
-          <Lightbox
-            wrapperClassName={styles.slideshow}
-            mainSrc={gallery[photoIndex].fixed.src}
-            nextSrc={gallery[(photoIndex + 1) % gallery.length].fixed.src}
-            prevSrc={
-              gallery[(photoIndex + gallery.length - 1) % gallery.length].fixed
-                .src
-            }
-            imageTitle={gallery[photoIndex].description}
-            onCloseRequest={() => this.setState({ isOpen: false })}
-            onMovePrevRequest={() =>
-              this.setState({
-                photoIndex: (photoIndex + gallery.length - 1) % gallery.length,
-              })
-            }
-            onMoveNextRequest={() =>
-              this.setState({
-                photoIndex: (photoIndex + 1) % gallery.length,
-              })
-            }
-            captions={gallery.map((g) => g.description)}
-            enableZoom
-            imagePadding={window.innerWidth > 767 ? 65 : 5}
-          />
-        )}
       </Layout>
     );
   }
-  handleGalleryClick = (i, e) => {
-    e.preventDefault();
-    this.setState({
-      isOpen: true,
-      photoIndex: i,
-    });
-  };
 }
 
 export default EscursioneTemplate;
@@ -109,9 +92,7 @@ export const pageQuery = graphql`
       titolo
       data(formatString: "MMMM Do, YYYY")
       immagineDiCopertina {
-        fluid(maxWidth: 1180, background: "rgb:999999") {
-          ...GatsbyContentfulFluid_tracedSVG
-        }
+        gatsbyImageData(width: 1180, layout: FULL_WIDTH)
       }
       location
       dislivello
@@ -120,13 +101,15 @@ export const pageQuery = graphql`
       rifugi
       cimeRaggiunte
       gallery {
-        fluid(maxWidth: 300, maxHeight: 200, background: "rgb:999999") {
-          ...GatsbyContentfulFluid_tracedSVG
-        }
         description
-        fixed(width: 1400, quality: 90) {
-          src
-        }
+        filename
+        preview: gatsbyImageData(
+          width: 300
+          height: 200
+          placeholder: BLURRED
+          resizingBehavior: CROP
+        )
+        full: gatsbyImageData(width: 1400, quality: 90, placeholder: BLURRED)
       }
       resoconto {
         childMarkdownRemark {

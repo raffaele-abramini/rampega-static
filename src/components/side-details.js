@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./side-details.module.css";
+import * as styles from "./side-details.module.css";
 import { GiMountaintop } from "react-icons/gi";
 import { GiBarracksTent } from "react-icons/gi";
 import ListWithIcon from "./list-with-icon";

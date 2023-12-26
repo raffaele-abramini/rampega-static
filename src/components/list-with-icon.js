@@ -1,11 +1,11 @@
 import React from "react";
-import styles from "./list-with-icon.module.css";
+import * as styles from "./list-with-icon.module.css";
 
 export default ({ list, icon: Icon }) => {
   return (
     <div className={styles.list}>
       {list.map((item) => (
-        <div className={styles.listItem}>
+        <div className={styles.listItem} key={item}>
           <span className={styles.icon}>
             <Icon />
           </span>

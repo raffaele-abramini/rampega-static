@@ -1,19 +1,22 @@
 import React from "react";
-import Img from "gatsby-image";
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
-import styles from "./hero.module.css";
+import * as styles from "./hero.module.css";
 
-export default ({ escursione: { titolo, immagineDiCopertina } }) => (
-  <div className={styles.hero}>
-    {immagineDiCopertina && (
-      <Img
-        className={styles.heroImage}
-        alt={titolo}
-        fluid={immagineDiCopertina.fluid}
-      />
-    )}
-    <div className={styles.heroDetails}>
-      <h1 className={styles.heroTitle}>{titolo}</h1>
+export default ({ escursione: { titolo, immagineDiCopertina } }) => {
+  const image = getImage(immagineDiCopertina)
+  return (
+    <div className={styles.hero}>
+      {immagineDiCopertina && (
+        <GatsbyImage
+          className={styles.heroImage}
+          alt={titolo}
+          image={image}
+        />
+      )}
+      <div className={styles.heroDetails}>
+        <h1 className={styles.heroTitle}>{titolo}</h1>
+      </div>
     </div>
-  </div>
-);
+  )
+};
