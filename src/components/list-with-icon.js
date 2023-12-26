@@ -5,7 +5,7 @@ export default ({ list, icon: Icon }) => {
   return (
     <div className={styles.list}>
       {list.map((item) => (
-        <div className={styles.listItem}>
+        <div className={styles.listItem} key={item}>
           <span className={styles.icon}>
             <Icon />
           </span>

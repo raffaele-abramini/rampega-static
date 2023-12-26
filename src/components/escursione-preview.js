@@ -10,7 +10,7 @@ export default ({ escursione: { url, immagineDiCopertina, titolo, data } }) => {
     <article>
       <Link to={`/escursioni/${url}`} className={styles.main}>
         {immagineDiCopertina && (
-          <GatsbyImage className={styles.img} image={image} />
+          <GatsbyImage className={styles.img} image={image} alt={titolo} />
         )}
         <div className={styles.text}>
           <h3 className={styles.title}>{titolo}</h3>
