@@ -50,8 +50,8 @@ export const pageQuery = graphql`
         node {
           immagineDiCopertina {
             gatsbyImageData(
-              height: 560
-              width: 800
+              height: 660
+              width: 1000
               placeholder: DOMINANT_COLOR
               resizingBehavior: CROP
             )
