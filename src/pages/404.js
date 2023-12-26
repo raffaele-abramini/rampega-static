@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
+import "./base.css";
 
 export default () => {
   return (
