@@ -49,14 +49,14 @@ class EscursioneTemplate extends React.Component {
               className={styles.gallery}
               style={{ "--totalSlides": escursione.gallery?.length || 0 }}
             >
-              {escursione.gallery?.map((g, i) => (
-                <li key={i} className={styles.galleryElement}>
+              {escursione.gallery?.map((image, i) => (
+                <li key={image.filename} className={styles.galleryElement}>
                   <button
                     type="button"
                     className={styles.galleryElementLink}
                     onClick={(e) => this.handleGalleryClick(i, e)}
                   >
-                    {/*<Img alt={g.title} fluid={g.fluid} />*/}
+                    <GatsbyImage alt={image.title} image={getImage(image.preview)} />
                   </button>
                 </li>
               ))}
@@ -121,15 +121,21 @@ export const pageQuery = graphql`
       durata
       rifugi
       cimeRaggiunte
-#      gallery {
-##        fluid(maxWidth: 300, maxHeight: 200, background: "rgb:999999") {
-##          ...GatsbyContentfulFluid_tracedSVG
-##        }
-#        description
-##        fixed(width: 1400, quality: 90) {
-##          src
-##        }
-#      }
+      gallery {
+          description
+          filename
+          preview: gatsbyImageData(
+              width: 300
+              height: 200
+              placeholder: BLURRED
+              resizingBehavior: CROP
+          )
+          full: gatsbyImageData(
+              width: 1400
+              quality: 90
+              placeholder: BLURRED
+          )
+      }
       resoconto {
         childMarkdownRemark {
           html

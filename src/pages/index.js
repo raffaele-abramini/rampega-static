@@ -50,7 +50,6 @@ export const pageQuery = graphql`
                           height: 560
                           width: 800
                           placeholder: DOMINANT_COLOR
-                          formats: [AUTO, WEBP, AVIF]
                           resizingBehavior: CROP
                       )
                   }
