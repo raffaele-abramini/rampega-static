@@ -47,7 +47,7 @@ class EscursioneTemplate extends React.Component {
             >
               <Gallery
                 options={{
-                  // initialZoomLevel: 10,
+                  initialZoomLevel: "fit",
                   showHideAnimationType: "fade",
                 }}
               >
@@ -58,6 +58,8 @@ class EscursioneTemplate extends React.Component {
                     <Item
                       original={full.images.fallback.src}
                       originalSrcset={full.images.sources[0]?.srcSet}
+                      width={full.width}
+                      height={full.height}
                       key={galleryItem.filename}
                     >
                       {({ ref, open }) => (
