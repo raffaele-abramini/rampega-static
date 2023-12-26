@@ -3,5 +3,5 @@
 
 [Build]
   base = "."
-  publish = "publish/"
+  publish = "public/"
   command = "rm -rf .cache && gatsby build"
