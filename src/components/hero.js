@@ -1,7 +1,7 @@
 import React from "react";
 import Img from "gatsby-image";
 
-import styles from "./hero.module.css";
+import * as styles from "./hero.module.css";
 
 export default ({ escursione: { titolo, immagineDiCopertina } }) => (
   <div className={styles.hero}>

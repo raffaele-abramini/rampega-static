@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./list-with-icon.module.css";
+import * as styles from "./list-with-icon.module.css";
 
 export default ({ list, icon: Icon }) => {
   return (

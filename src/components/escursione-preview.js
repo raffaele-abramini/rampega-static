@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "gatsby";
 import Img from "gatsby-image";
 
-import styles from "./escursione-preview.module.css";
+import * as styles from "./escursione-preview.module.css";
 
 export default ({ escursione: { url, immagineDiCopertina, titolo } }) => (
   <article>

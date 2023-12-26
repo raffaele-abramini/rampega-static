@@ -6,7 +6,7 @@ import Img from "gatsby-image";
 import Layout from "../components/layout";
 import Hero from "../components/hero";
 import SideDetails from "../components/side-details";
-import styles from "./escursione.template.module.css";
+import * as styles from "./escursione.template.module.css";
 // import Lightbox from "react-image-lightbox";
 
 class EscursioneTemplate extends React.Component {
